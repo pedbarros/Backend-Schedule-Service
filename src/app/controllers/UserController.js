@@ -17,9 +17,13 @@ class UserController {
 
     if (userExists) res.status(400).json({ error: 'User already exists' });
 
-    const { id, name, email, provider } = await User.create(req.body)
+    const {
+      id, name, email, provider,
+    } = await User.create(req.body);
 
-    return res.json({ id, name, email, provider });
+    return res.json({
+      id, name, email, provider,
+    })
   }
 
 
@@ -28,12 +32,8 @@ class UserController {
       name: Yup.string(),
       email: Yup.string().email(),
       oldPassword: Yup.string().min(6),
-      password: Yup.string().min(6).when('oldPassword', (oldPassword, field) =>
-        oldPassword ? field.required() : field
-      ),
-      confirmPassword: Yup.string().when('password', (password, field) => 
-        password ? field.required().oneOf([Yup.ref('password')]) : password
-      ),
+      password: Yup.string().min(6).when('oldPassword', (oldPassword, field) => (oldPassword ? field.required() : field)),
+      confirmPassword: Yup.string().when('password', (password, field) => (password ? field.required().oneOf([Yup.ref('password')]) : password)),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -55,7 +55,9 @@ class UserController {
 
     const { id, name, provider } = await user.update(req.body);
 
-    return res.json({ id, name, email, provider })
+    return res.json({
+      id, name, email, provider,
+    });
   }
 }
 
