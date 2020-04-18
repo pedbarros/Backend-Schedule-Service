@@ -1,5 +1,5 @@
-import Bee from 'bee-queue'
-import CancellationMail from '../app/jobs/CancellationMail'
+import Bee from 'bee-queue';
+import CancellationMail from '../app/jobs/CancellationMail';
 import redisConfig from '../config/redis';
 
 const jobs = [CancellationMail];
@@ -11,7 +11,7 @@ class Queue {
     this.init();
   }
 
-  init () {    
+  init() {
     jobs.forEach(({ key, handle }) => {
       this.queues[key] = {
         bee: new Bee(key, {
@@ -22,7 +22,7 @@ class Queue {
     });
   }
 
-  add (queue, job) {  
+  add(queue, job) {
     return this.queues[queue].bee.createJob(job).save();
   }
 
