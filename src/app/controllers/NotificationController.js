@@ -23,8 +23,6 @@ class NotificationController {
   }
 
   async update(req, res) {
-    // const notifications = await Notification.findById(req.params.id);
-
     const notification = await Notification.findByIdAndUpdate(
       req.params.id,
       { read: true },
