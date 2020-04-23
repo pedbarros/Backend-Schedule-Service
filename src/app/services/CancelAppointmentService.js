@@ -43,6 +43,11 @@ class CancelAppointmentService {
     await Queue.add(CancellationMail.key, {
       appointment,
     });
+    
+    /**
+    * Invalidate cache
+    */    
+   await Cache.invalidatePrefix(`user:${user.id}/appointment`);
 
     return appointment;
   }
