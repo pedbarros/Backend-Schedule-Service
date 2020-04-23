@@ -14,9 +14,7 @@ class AppointmentController {
 
     const cached = await Cache.get(cacheKey);
 
-    if (cached) {
-      console.log('vem de cacha');
-      
+    if (cached) {      
       return res.json(cached);
     }
 
