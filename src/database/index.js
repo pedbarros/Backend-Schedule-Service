@@ -24,7 +24,7 @@ class Database {
 
   mongo () {
     this.mongoConnection = mongoose.connect(
-      'mongodb://localhost:27017/gobarber', {
+      'mongodb://localhost:27017/agendamento', {
       useNewUrlParser: true,
       useFindAndModify: true,
       useUnifiedTopology: true
